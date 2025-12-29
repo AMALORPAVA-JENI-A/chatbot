@@ -1,0 +1,150 @@
+/* ===== RESET ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== BODY ===== */
+body {
+    font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #f7f7f8;
+    height: 100vh;
+}
+
+/* ===== LAYOUT ===== */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 260px;
+    background-color: #202123;
+    color: #ececec;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar button {
+    background-color: #343541;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.sidebar button:hover {
+    background-color: #40414f;
+}
+
+.sidebar ul {
+    list-style: none;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.sidebar li {
+    padding: 10px;
+    margin-bottom: 6px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #d1d5db;
+}
+
+.sidebar li:hover {
+    background-color: #343541;
+}
+
+/* ===== CHAT AREA ===== */
+.chat-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+/* ===== CHAT BOX ===== */
+#chat-box {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+/* ===== MESSAGE BOXES (CHATGPT STYLE) ===== */
+#chat-box p {
+    max-width: 800px;
+    margin-bottom: 16px;
+    padding: 16px;
+    border-radius: 10px;
+    line-height: 1.6;
+    font-size: 15px;
+    background-color: #f7f7f8;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+/* ===== USER LABEL ===== */
+#chat-box p b {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* ===== INPUT AREA ===== */
+.input-area {
+    border-top: 1px solid #e5e7eb;
+    padding: 16px;
+    display: flex;
+    gap: 10px;
+    background-color: #ffffff;
+}
+
+.input-area input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    font-size: 15px;
+}
+
+.input-area input:focus {
+    outline: none;
+    border-color: #10a37f;
+}
+
+.input-area button {
+    background-color: #10a37f;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.input-area button:hover {
+    background-color: #0e8f6e;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #c7c7c7;
+    border-radius: 4px;
+}
+
+#chat-box p {
+    white-space: pre-line;
+}
+
+
