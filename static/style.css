@@ -146,5 +146,9 @@ body {
 #chat-box p {
     white-space: pre-line;
 }
+.assistant-message p {
+    margin-bottom: 10px;
+}
+
 
 

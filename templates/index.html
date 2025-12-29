@@ -17,6 +17,7 @@
 
         <div class="input-area">
             <input id="user-input" placeholder="Type a message..." />
+            
             <button onclick="sendMessage()">Send</button>
         </div>
     </div>
@@ -56,7 +57,19 @@ function loadMessages(chatId) {
         .then(res => res.json())
         .then(msgs => {
             let chatBox = document.getElementById("chat-box");
-            chatBox.innerHTML = "";
+            const formattedReply = reply
+    .split('\n')
+    .filter(line => line.trim() !== '')
+    .map(line => `<p>${line}</p>`)
+    .join('');
+
+chatBox.innerHTML += `
+    <div class="assistant-message">
+        <b>ChatGPT:</b>
+        ${formattedReply}
+    </div>
+`;
+
             msgs.forEach(m => {
                 if (m.role !== "system") {
                     chatBox.innerHTML += `<p><b>${m.role === "user" ? "You" : "ChatGPT"}:</b> ${m.content}</p>`;
