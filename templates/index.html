@@ -2,7 +2,10 @@
 <html>
 <head>
     <title>ChatGPT Clone</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+
+
 </head>
 <body>
 
@@ -22,83 +25,5 @@
         </div>
     </div>
 </div>
-
-<script>
-let currentChatId = null;
-
-function createNewChat() {
-    fetch("/new_chat", { method: "POST" })
-        .then(res => res.json())
-        .then(data => {
-            currentChatId = data.chat_id;
-            loadHistory();
-            document.getElementById("chat-box").innerHTML = "";
-        });
-}
-
-function loadHistory() {
-    fetch("/history")
-        .then(res => res.json())
-        .then(chats => {
-            let list = document.getElementById("chat-list");
-            list.innerHTML = "";
-            chats.forEach(chat => {
-                let li = document.createElement("li");
-                li.textContent = chat.title;
-                li.onclick = () => loadMessages(chat.chat_id);
-                list.appendChild(li);
-            });
-        });
-}
-
-function loadMessages(chatId) {
-    currentChatId = chatId;
-    fetch(`/messages/${chatId}`)
-        .then(res => res.json())
-        .then(msgs => {
-            let chatBox = document.getElementById("chat-box");
-            const formattedReply = reply
-    .split('\n')
-    .filter(line => line.trim() !== '')
-    .map(line => `<p>${line}</p>`)
-    .join('');
-
-chatBox.innerHTML += `
-    <div class="assistant-message">
-        <b>ChatGPT:</b>
-        ${formattedReply}
-    </div>
-`;
-
-            msgs.forEach(m => {
-                if (m.role !== "system") {
-                    chatBox.innerHTML += `<p><b>${m.role === "user" ? "You" : "ChatGPT"}:</b> ${m.content}</p>`;
-                }
-            });
-        });
-}
-
-function sendMessage() {
-    let input = document.getElementById("user-input");
-    let message = input.value.trim();
-    if (!message || !currentChatId) return;
-
-    input.value = "";
-
-    fetch("/chat", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ chat_id: currentChatId, message })
-    })
-    .then(res => res.json())
-    .then(data => {
-        loadMessages(currentChatId);
-    });
-}
-
-createNewChat();
-loadHistory();
-</script>
-
 </body>
 </html>

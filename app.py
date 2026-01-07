@@ -5,7 +5,7 @@ from groq import Groq
 
 app = Flask(__name__)
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
-
+print(os.getenv("GROQ_API_KEY"))
 # Store all conversations
 conversations = {}
 
@@ -77,4 +77,4 @@ def messages(chat_id):
     return jsonify(conversations.get(chat_id, []))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=7860)
